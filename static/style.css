@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive;
+    transition: background 1s ease-in-out;
+    text-align: center;
+    padding-top: 50px;
+    color: white;
+  }
+  
+  button {
+    font-size: 3rem;
+    margin: 20px;
+    padding: 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #0005;
+    transition: transform 0.2s;
+  }
+  
+  button:hover {
+    transform: scale(1.2);
+  }
+  
+  .message {
+    margin-top: 40px;
+    font-size: 2rem;
+    background-color: #00000055;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 20px;
+  }
+/* Existing styles stay unchanged */
+
+#notepad {
+    display: none;
+    margin-top: 30px;
+  }
+  
+  textarea {
+    width: 80%;
+    height: 100px;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: none;
+    resize: none;
+    box-shadow: 0 0 5px #0004;
+  }
+  
+  #saveBtn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #fff;
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 10px #0005;
+  }
+  
+  .noteDisplay {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    animation: fadeIn 1s;
+    color: #ffffff;
+    background-color: #00000055;
+    padding: 15px;
+    border-radius: 15px;
+    display: inline-block;
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+    

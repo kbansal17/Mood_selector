@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mood Selector 🌈</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="background: linear-gradient(135deg, #eee, #ccc);" id="body">
+  <h1>What's Your Mood? 🤔</h1>
+
+  <div>
+    <button onclick="selectMood('happy')">😊</button>
+    <button onclick="selectMood('sad')">😢</button>
+    <button onclick="selectMood('excited')">🤩</button>
+  </div>
+
+  <div class="message" id="message"></div>
+
+  <div id="notepad">
+    <textarea id="noteArea" placeholder="Write about your mood here..."></textarea><br>
+    <button id="saveBtn" onclick="saveNote()">Save</button>
+  </div>
+
+  <div id="savedNote" class="noteDisplay"></div>
+
+  <br><br>
+  <button onclick="viewNotes()" style="font-size:1rem; padding:10px 20px; border-radius:12px;">📚 View Past Notes</button>
+  <div id="notesList" style="margin-top:30px;"></div>
+
+  <script>
+    let currentMood = "";
+
+    async function selectMood(mood) {
+      currentMood = mood;
+      const res = await fetch('/mood', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ mood })
+      });
+
+      const data = await res.json();
+      document.getElementById('body').style.background = data.bg || '#eee';
+      document.getElementById('message').textContent = data.message || '';
+
+      // Show notepad
+      document.getElementById('notepad').style.display = 'block';
+      document.getElementById('noteArea').value = '';
+      document.getElementById('savedNote').textContent = '';
+    }
+
+    async function saveNote() {
+      const note = document.getElementById('noteArea').value.trim();
+      if (note !== '') {
+        const res = await fetch('/save_note', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ mood: currentMood, note })
+        });
+
+        const data = await res.json();
+        if (data.status === 'success') {
+          document.getElementById('savedNote').textContent = "📝 Note Saved: " + note;
+        }
+      }
+    }
+
+    async function viewNotes() {
+      const res = await fetch('/get_notes');
+      const notes = await res.json();
+
+      const notesDiv = document.getElementById('notesList');
+      notesDiv.innerHTML = "";
+
+      if (notes.length === 0) {
+        notesDiv.innerHTML = "<p>No notes saved yet!</p>";
+        return;
+      }
+
+      notes.forEach(note => {
+        const entry = document.createElement("div");
+        entry.classList.add("noteDisplay");
+        entry.innerHTML = `<b>${note.mood.toUpperCase()} 🕒 ${note.time}</b><br>${note.note}`;
+        notesDiv.appendChild(entry);
+      });
+    }
+  </script>
+</body>
+</html>
