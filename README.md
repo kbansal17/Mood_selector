@@ -12,13 +12,7 @@ A colorful and interactive web app that lets you choose your mood, express your 
 - 💾 **Saves memories** locally with mood, note, and timestamp
 - 📚 **View all past notes** anytime for reflection or inspiration
 
----
 
-## 📸 Preview
-
-![Mood Selector Screenshot](https://via.placeholder.com/800x400.png?text=Mood+Selector+Preview)
-
----
 
 ## 🛠️ Tech Stack
 
