@@ -72,20 +72,4 @@ mood-selector/
 
 Created with love and code to help people express and reflect on their emotions.
 
----
 
-## 📜 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-```
-
----
-
-Let me know if you'd like me to:
-- Add a real **screenshot** to the preview section
-- Include a **live demo link** if we deploy it
-- Generate a **LICENSE** file (MIT or others)
-
-Would you like me to prepare that too?
-```
